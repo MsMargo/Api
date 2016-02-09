@@ -1,0 +1,82 @@
+﻿@using RestApi.Models.ViewModel
+@model IEnumerable<UserView>
+
+@using (Html.BeginForm("List", "User", FormMethod.Get))
+{
+    <h3>All records: <b>@Model.Count()</b></h3>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Login
+                </th>
+                <th>
+                    E-mail
+                </th>
+                <th>
+                    Address
+                </th>
+                <th>
+                    Phone
+                </th>
+                <th>
+                    Website
+                </th>
+                <th>
+                    Company
+                </th>
+                <th>
+                    Select
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model)
+            {
+                <tr>
+                    <td> @user.Name</td>
+                    <td> @user.Login</td>
+                    <td><a href="mailto:@user.Email">@user.Email</a></td>
+                    <td class="col-md-2">
+                        @user.Address.City
+                        <br />
+                        <a class="btn-link" data-toggle="collapse" href="#@user.Id" aria-expanded="false" aria-controls="@user.Id">
+                            details
+                        </a>
+                        <div class="collapse address" id="@user.Id">
+                            <span>City: @user.Address.City</span>
+                            <span>Street: @user.Address.Street</span>
+                            <span>Suite: @user.Address.Suite</span>
+                            <span>Zipcode: @user.Address.Zipcode</span>
+                            <span>Coordinates:</span>
+                            <span>lat: @user.Address.Geo.Lat</span>
+                            <span>lng: @user.Address.Geo.Lng</span>
+                        </div>
+                    </td>
+                    <td class="col-md-2">
+                        @user.Phone
+                        <br />
+                        @if (user.ExtensionNumber != null)
+                        {
+                            <text>ext.</text>;
+                        }
+                        @user.ExtensionNumber
+                    </td>
+                    <td><a href="http://@user.Website" target="_blank">@user.Website</a> </td>
+                    <td data-toggle="tooltip" data-placement="bottom" title="@user.Company.CatchPhrase" class="tooltipTd">
+                        "@user.Company.Name"
+                        <br />
+                        @user.Company.Bs
+                    </td>
+                    <td>
+                        <a href="/User/Details?userId=1">Show posts</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
