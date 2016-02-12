@@ -1,0 +1,26 @@
+﻿@*@model MedicalApp.Models.ViewModel.ReceptionViewModel
+
+<table class="table table-hover" border="1">
+    <thead>
+        <tr>
+            <th>Doctor Name</th>
+            <th>Medical Specialization</th>
+            <th>Patient Name</th>
+            <th>Visite Date</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>@ViewBag.DoctorName</td>
+            <td>@ViewBag.DoctorSpecialization</td>
+            <td>@ViewBag.PatientName</td>
+            <td>@Model.VisiteDate @Model.VisiteTime</td>
+            <td>@Model.Description</td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="my-modal-footer">
+    <button type="button" class="btn btn-danger" data-dismiss="modal">Ok</button>
+</div>*@

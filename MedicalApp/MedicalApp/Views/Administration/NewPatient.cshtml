@@ -1,0 +1,88 @@
+﻿@model MedicalApp.Models.ViewModel.PatientViewModel
+@using MedicalApp.Models.Enums;
+@*<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/mvc/5.1/jquery.validate.unobtrusive.min.js"></script>
+<script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>*@
+@using (@Html.BeginForm("NewPatient", "Administration", FormMethod.Post, new { @class = "form-horizontal", id = "newPatientForm" }))
+{
+    <div class="form-group">
+        <label for="inputFirstName" class="col-sm-2 control-label">First Name</label>
+        <div class="col-sm-10">
+
+            @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", id = "inputFirstName", placeholder = "First Name" })
+            @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputLastName" class="col-sm-2 control-label">Last Name</label>
+        <div class="col-sm-10">
+            @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", id = "inputLastName", placeholder = "Last Name" })
+            @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputGender" class="col-sm-2 control-label">Gender</label>
+        <div class="col-sm-10">
+            @Html.DropDownList("Gender", new List<SelectListItem> {
+            new SelectListItem { Text = GenderSelector.Male.ToString()},
+            new SelectListItem { Text = GenderSelector.Female.ToString()} },
+            new { @class = "form-control", id = "inputGender", placeholder = "Gender" })
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputPesel" class="col-sm-2 control-label">Pesel</label>
+        <div class="col-sm-10">
+            @Html.TextBoxFor(m => m.Pesel, new { @class = "form-control", id = "inputPesel", placeholder = "Pesel" })
+            @Html.ValidationMessageFor(m => m.Pesel, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputCity" class="col-sm-2 control-label">City</label>
+        <div class="col-sm-10">
+            @Html.DropDownListFor(m => m.CityId, new SelectList(ViewBag.City, "Value", "Text"), new { @class = "form-control", id = "inputCity", placeholder = "City" })
+            @*@Html.TextBoxFor(m => m.CityId, new { @class = "form-control", id = "inputCity", placeholder = "City" })*@
+        </div>
+    </div>
+    <div class="my-modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="btnAddPatient" data-target="#modal">Add patient</button>
+    </div>
+}
+<script>
+    $(document).ready(function () {
+        $.validator.unobtrusive.parse("#newPatientForm");
+
+        $(function () {
+
+            $("#btnAddPatient").click(function () {
+                if (!$("#newPatientForm").valid()) {
+                    return false;
+                }
+
+                $.ajax(
+        {
+            url: '/Administration/NewPatient',
+            type: 'POST',
+            dataType: 'JSON',
+            data: $('#newPatientForm').serialize(),
+
+            success: function (data) {
+                if (data.success) {
+                    $("#modal").modal("hide");
+                    alert("Patient successfully added");
+                } else {
+                    alert("Can't save patient, please try again");
+                }
+
+            },
+            error: function (error) {
+                debugger;
+                alert(error);
+            }
+        });
+
+            });
+        });
+    });
+
+</script>
