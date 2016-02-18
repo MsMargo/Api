@@ -29,9 +29,7 @@ namespace MedicalApp.Controllers
                 ViewBag.DoctorSpecialization = serv.GetMedicalSpecialization(visit.MedicalSpecializationId);
                 ViewBag.PatientName = serv.GetPatienName(visit.PatientId);
             }
-            //return PartialView("AddVisitResult", visit);
             return Redirect("Administration/Reception");
-            //return View();
         }
         [HttpGet]
         public ActionResult SearchVisit()

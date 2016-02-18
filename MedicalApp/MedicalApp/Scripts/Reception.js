@@ -1,7 +1,6 @@
 ﻿$(document).ready(function () {
     $(function () {
         $('#searchPatient').click(function () {
-            //var url = $('#modal-searchPatient').data('ur');
             var url = '/Administration/SearchPatient';
             $.get(url, function (data) {
                 $('.modal-title').html('Search Patient');
@@ -11,7 +10,6 @@
         });
 
         $('#btnVisitList').click(function () {
-            //var url = $('#modal-allVisits').data('url');
             var url = '/Administration/SearchVisit';
             $.get(url, function (data) {
                 $('.modal-title').html('Search visits');
@@ -21,7 +19,6 @@
         });
 
         $('#newPatient').click(function () {
-            //var url = $('#modal-newPatient').data('url');
             var url = '/Administration/NewPatient'
             $.get(url, function (data) {
                 $('.modal-title').html('New Patient');
@@ -52,16 +49,7 @@
             }
         });
 
-        //modal.on('click', '#btnAddVisit', function () {
-        //    //       var url = '/Administration/Reception'
-        //    debugger;
-        //    $.get(function (data) {
-        //        $('.modal-title').html('Visit was added');
-        //        $('.modal-body').html(data);
-        //        $('#modal').modal('show');
-        //    });
-        //});
-
+ 
         $('#datepicker').datepicker({ minDate: 0 });
 
         function GetTodayDate() {

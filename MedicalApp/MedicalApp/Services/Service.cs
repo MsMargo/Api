@@ -33,7 +33,6 @@ namespace MedicalApp.Services
         {
             var doctors = db.Doctors.AsEnumerable().Select(x => new SelectListItem()
             {
-                //Value = x.Id.ToString(),
                 Value = String.Format("{0} {1}", x.FirstName, x.LastName),
                 Text = String.Format("{0} {1}", x.FirstName, x.LastName),
                 Selected = false
@@ -142,7 +141,6 @@ namespace MedicalApp.Services
             {
                 DateTime date = DateTime.Parse(visitFilter.VisitDate);
                 query = query.Where(x => x.VisiteDate.Year == date.Year).Where(x => x.VisiteDate.Month == date.Month).Where(x => x.VisiteDate.Day == date.Day);
-                //query = query.Where(x => x.VisiteDate == visitFilter.VisitDate);
 
             }
             if (visitFilter.DoctorName!="-1")

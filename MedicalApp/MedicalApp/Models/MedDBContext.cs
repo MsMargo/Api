@@ -16,10 +16,5 @@ namespace MedicalApp.Models
         public DbSet<MedicalSpecialization> MedicalSpecializations { get; set; }
         public DbSet<Patient> Patients { get; set; }
         public DbSet<Visite> Visites { get; set; }
-
-        //protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        //{
-        //    modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
-        //}
     }
 }
