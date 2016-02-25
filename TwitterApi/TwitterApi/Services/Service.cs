@@ -30,12 +30,10 @@ namespace TwitterApi.Services
         public Service()
         {
             twitterContext = new TwitterContext(authorizer);
-
         }
 
         public List<Tweet> GetTweetsByQuery(string searchQuery, ulong? maxId, DirectionEnum? direction)
         {
-
             var query =
                (from search in twitterContext.Search
                 where search.Type == SearchType.Search &&
@@ -51,7 +49,6 @@ namespace TwitterApi.Services
             }
 
             var tweets = query.SingleOrDefault();
-
             var resultTweets = new List<Tweet>();
 
             if (tweets != null && tweets.Statuses != null)
@@ -65,7 +62,6 @@ namespace TwitterApi.Services
                 }).ToList();
             }
             GetTrimmedLengthTweet(ref resultTweets);
-
             return resultTweets;
         }
 

@@ -22,7 +22,6 @@ namespace TwitterApi.Controllers
             return View();
         }
 
-
         public string GetTweetsByQuery(string query, ulong? maxId, DirectionEnum? direction)
         {
             var model = _service.GetTweetsByQuery(query, maxId, direction);

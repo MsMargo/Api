@@ -15,11 +15,9 @@ var errorMessage = {
     TooLongSearchQuery: 1
 }
 
-
 $(window).load(function () {
     $(".loader").fadeOut("slow");
 })
-
 
 $(document).ready(function () {
     if (document.cookie.indexOf("feed") >= 0) {
@@ -35,7 +33,6 @@ $(document).ready(function () {
     $("#search-text").keyup(function () {
         hideErorMessage();
         var charactersLength = $("#search-text").val().length;
-
         if (charactersLength > maxLengthSearchPhrase) {
             showErrorMessage(errorMessage.TooLongSearchQuery);
             var enteredText = $("#search-text").val().substr(0, maxLengthSearchPhrase);
@@ -47,12 +44,10 @@ $(document).ready(function () {
     });
 
     $("#search-button").click(function () {
-
         if ($("#search-text").val().length) {
-
             hideErorMessage();
             cleanResultContainer();
-            showResultConteiner();
+            showResultContainer();
             getTwits();
             hidePrevious();
         }
@@ -64,9 +59,7 @@ $(document).ready(function () {
 
     $(".next").click(function () {
         cleanResultContainer();
-
         if (tweets && Array.isArray(tweets)) {
-
             listMaxId.push(tweets[0].statusId);
             var maxId = tweets[tweets.length - 1].statusId;
             getTwits(maxId, DIRECTION.Next);
@@ -83,9 +76,6 @@ $(document).ready(function () {
         }
     });
 })
-
-
-
 
 var getTwits = function (maxId, direction) {
     preloaderOn();
@@ -104,26 +94,22 @@ var getTwits = function (maxId, direction) {
 }
 
 var showResult = function (data) {
-    showResultConteiner();
-
+    showResultContainer();
     if (data.length) {
         for (var i = 0; i < data.length; i++) {
             showTweetRow(data[i]);
         }
-
         if (data.length < 10 && !listMaxId.length) {
             hidePagination();
             return;
         }
         showPagination();
-
         if (data.length < 10 && listMaxId.length) {
             hideNext();
         }
         else {
             showNext();
         }
-
     }
     else {
         if (!listMaxId.length) {
@@ -144,7 +130,6 @@ var showTweetRow = function (rowData) {
     $(".results-container>.twitter-feed").append(tweetRow);
 }
 
-
 var getFeed = function () {
     $.ajax({
         url: "/twitter/getTweetsByUser",
@@ -161,7 +146,6 @@ var getFeed = function () {
 var showFeed = function (feedArray) {
     $(".tweet-heading").append(feedArray[0].userName);
     cleanFeedContainer();
-
     for (var i = 0; i < feedArray.length; i++) {
         showFeedRow(feedArray[i]);
     }
@@ -186,9 +170,6 @@ var dateFormat = function (data) {
     var dateByMask = Date.parse(data);
     return dateByMask = $.format.date(dateByMask, "D MMMM yyyy at hh.mmp");
 }
-
-
-
 
 //helpers
 var showErrorMessage = function (message) {
@@ -225,7 +206,7 @@ var hidePagination = function () {
 var cleanResultContainer = function () {
     $(".results-container>.twitter-feed").empty();
 }
-var showResultConteiner = function () {
+var showResultContainer = function () {
     $(".tweet-search-results").show();
 }
 var cleanFeedContainer = function () {
