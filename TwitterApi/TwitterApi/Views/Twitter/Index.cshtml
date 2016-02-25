@@ -1,0 +1,49 @@
+﻿<header role="banner" id="site-header">
+    <div class="content-wrap">
+        <h1><a href="./" id="header-logo"><img src="~/Content/images/logo.png" alt="POSSIBLE"></a></h1>
+    </div>
+</header>
+<div id="main" class="clearfix">
+    <div class="title-bar">
+        <h2 class="content-wrap">Welcome to the Twitter Page</h2>
+    </div>
+    <div class="content-wrap">
+        <section role="main" id="content">
+            <div class="tweet-search">
+                <h3>Search for updates:</h3>
+                <form id="search-form">
+                    <div for="search-text" id="errorRequiredMessage" class="errorMessage" hidden="hidden">This field is required</div>
+                    <div for="search-text" id="errorMaxLehgth" class="errorMessage" hidden="hidden">There are was entered maximum characters (25)</div>
+                    <label id="search-text-label" for="search-text" class="reader">Enter some text to search on:</label>
+                    <input type="text" id="search-text" placeholder="search phrase..." />
+                    <input type="button" id="search-button" value="Search" />
+                </form>
+            </div>
+            <div class="tweet-search-results" hidden="hidden">
+                <div class="results-container">
+                    <h3>Search results:</h3>
+                    <div class="twitter-feed">
+
+                    </div>
+                </div>
+                <div class="pagination" hidden="hidden">
+                    <a class="previous" href="#" title="previous page"><span class="reader">Previous page of results</span></a>
+                    <a class="next" href="#" title="next page"><span class="reader">Next page of results</span></a>
+                </div>
+            </div>
+        </section>
+        <aside role="complementary" id="sidebar">
+            <h3 class="tweet-heading">@@</h3>
+            <p class="tweet-intro">Our most recent updates:</p>
+            <div class="twitter-feed">
+
+            </div>
+        </aside>
+    </div>
+</div>
+<footer id="site-footer" class="clearfix">
+    <div class="content-wrap">
+        <span class="pull-right">&copy;POSSIBLE 2016</span>
+    </div>
+</footer>
+<script src="~/scripts/search.js"></script>
